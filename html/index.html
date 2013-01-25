@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/jquery.jqplot.css" rel="stylesheet">
     
     <style type="text/css">
       body {
@@ -9,8 +10,24 @@
         padding-bottom: 40px;
     </style>
     
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- Libraries and such -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery-migrate-1.0.0.js"></script>
+    <script type="text/javascript" src="js/underscore.js"></script>
+    <!-- <script type="text/javascript" src="js/bootstrap.min.js"></script> -->
+    <script type="text/javascript" src="js/backbone.js"></script>
+    
+    <!-- jqplot stuff -->
+    <script type="text/javascript" src="js/jquery.jqplot.js"></script>
+    <script type="text/javascript" src="js/plugins/jqplot.canvasAxisLabelRenderer.js"></script>
+    <script type="text/javascript" src="js/plugins/jqplot.categoryAxisRenderer.js"></script>
+    <script type="text/javascript" src="js/plugins/jqplot.canvasTextRenderer.min.js"></script>
+    <script type="text/javascript" src="js/plugins/jqplot.lineRenderer.js"></script>
+    <script type="text/javascript" src="js/plugins/jqplot.barRenderer.js"></script>
+    <script type="text/javascript" src="js/plugins/jqplot.pointLabels.min.js"></script>
+    
+    
+    <script type="text/javascript" src="js/app.js"></script>
   </head>
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -32,8 +49,35 @@
     
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span12">
-          <h1>Hello world!</h1>
+        <div class="span12" id="main">
+          <form class="form-horizontal">
+            <div class="control-group">
+              <label for="caesar_shift_amount">Caesar Shift Amount</label>
+              <div class="controls">
+                <input id="caesar_shift_amount" type="text" value="15" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label for="raw">Raw text</label>
+              <div class="controls">
+                <textarea name="raw" id="raw" style="width: 100%;" rows="10">Sample text!</textarea>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="controls">
+                <button class="btn process" onclick="return false">Process</button>
+              </div>
+            </div>
+            <div id="raw_graph"></div>
+            
+            <div class="control-group">
+              <label for="des">Text after caesar shift</label>
+              <div class="controls">
+                <textarea id="caesar" name="caesar" readonly="true" style="width: 100%;" rows="10"></textarea>
+              </div>
+            </div>
+            <div id="caesar_graph"></div>
+          </form>
         </div>
       </div>
     </div>
