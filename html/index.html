@@ -49,36 +49,56 @@
     
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span12" id="main">
-          <form class="form-horizontal">
-            <div class="control-group">
-              <label for="caesar_shift_amount">Caesar Shift Amount</label>
-              <div class="controls">
-                <input id="caesar_shift_amount" type="text" value="15" />
+      
+        <ol>
+          <li>
+            <p>Crypto-analysis and brute-force</p>
+          </li>
+          <li>
+            <p>You can either shift letters, or substitute letters when dealing with crypto.</p>
+          </li>
+          <li>
+            <p>Given that the EFF DES cracker could examine 92,625,000,000 keys/per second (<a href="https://w2.eff.org/Privacy/Crypto/Crypto_misc/DESCracker/HTML/19980716_eff_des_faq.html#howlong">Look here</a>), I would do the following calculations:</p>
+            <p>Time (in days) = (key space)/9e10/(60*60*24)<p>
+            <p>36500 = (key space)/9e10/(60*60*24)</p>
+            <p>key space = ~2^(68)</p>
+            <p>Given that speed, it would take 10 years to "crack" (worst case) a key with 2^68 key size. This seems reasonable to me.</p>
+          </li>
+          <li>
+            <p>I have here a program to generate graphs for plain text and a simple caesar cipher. The graphs indicate the number of occurances (x-axis) of character (y-axis), ordered from greatest to least. If you want to check a different cipher, just encrypt it elsewhere and try pasting it into the plain text box.</p>
+            <p>In general, you will see that the two graphs are identical. This indicates to me that it is very vulnerable to cryptoanalysis (for example, the most common letter is e. Therefore, to decrypt the caesar shift, just find the shift amount between the most common encrypted letter and e, then apply that shift all around).
+          <div class="span12" id="main">
+            <form class="form-horizontal">
+              <div class="control-group">
+                <label for="caesar_shift_amount">Caesar Shift Amount</label>
+                <div class="controls">
+                  <input id="caesar_shift_amount" type="text" value="15" />
+                </div>
               </div>
-            </div>
-            <div class="control-group">
-              <label for="raw">Raw text</label>
-              <div class="controls">
-                <textarea name="raw" id="raw" style="width: 100%;" rows="10">Sample text!</textarea>
+              <div class="control-group">
+                <label for="raw">Raw text</label>
+                <div class="controls">
+                  <textarea name="raw" id="raw" style="width: 100%;" rows="10">Sample text!</textarea>
+                </div>
               </div>
-            </div>
-            <div class="control-group">
-              <div class="controls">
-                <button class="btn process" onclick="return false">Process</button>
+              <div class="control-group">
+                <div class="controls">
+                  <button class="btn process" onclick="return false">Process</button>
+                </div>
               </div>
-            </div>
-            <div id="raw_graph"></div>
-            
-            <div class="control-group">
-              <label for="des">Text after caesar shift</label>
-              <div class="controls">
-                <textarea id="caesar" name="caesar" readonly="true" style="width: 100%;" rows="10"></textarea>
+              <div id="raw_graph"></div>
+              
+              <div class="control-group">
+                <label for="des">Text after caesar shift</label>
+                <div class="controls">
+                  <textarea id="caesar" name="caesar" readonly="true" style="width: 100%;" rows="10"></textarea>
+                </div>
               </div>
-            </div>
-            <div id="caesar_graph"></div>
-          </form>
-        </div>
+              <div id="caesar_graph"></div>
+            </form>
+          </div>
+        </li>
+        </ol>
       </div>
     </div>
   </body>
